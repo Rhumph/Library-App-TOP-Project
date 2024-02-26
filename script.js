@@ -1,20 +1,42 @@
-const myLibrary = [];
+const myLibrary = [
+    ["Chaos", "Tom O'Neill", "Investigative Journalism", "528", "Have Read"],
+    ["Breath", "James Nestor", "Health/Investigative", "304", "Have Read"],
+    ["The Gulag archipelago", "Aleksandr Solzhenitsyn", "History/Politics", "1948", "Currently Reading"],
+    ["1984", "George Orwell", "Dystopian Fiction", "328", "Have Read"]
+];
 
-const newBook = document.getElementById("#book-name")
-submit-btn.addEventListener()
+const newBookTitle = document.getElementById("bookTitle");
+const newBookAuthor = document.getElementById("bookAuthor");
+const newBookGenre = document.getElementById("bookGenre");
+const newBookLength = document.getElementById("bookLength");
+const newBookReadStatus = document.getElementById("bookReadStatus");
+const submitBtn = document.getElementById("oneBtn");
 
-function Book(author, title, genre, readStatus) {
-    this.author = author;
-    this.title = title;
-    this.genre = genre;
-    this.readStatus = readStatus;
+function Book(bookTitle, bookAuthor, bookGenre, bookLength, bookReadStatus) {
+
+    this.bookTitle = bookTitle;
+    this.bookAuthor = bookAuthor;
+    this.bookGenre = bookGenre;
+    this.bookLength = [bookLength + " Pages"];
+    this.bookReadStatus = bookReadStatus;
+
 }
 
+myLibrary.forEach(Book => {
+    Book.forEach(attribute => {
+        console.log(attribute)}
+    )
+});
 
+// function addBookToLibrary() {
 
-function addBookToLibrary() {
-  const newBook = new Book.name;
-  myLibrary.push(newBook);
-}
+//     const bookName = newBookTitle.value;
+//     const bookToAdd = new Book(bookName);
+//     myLibrary.push(bookToAdd);
+//     myLibrary.forEach(book => {
+//         console.log(book.bookTitle);
+//     });
 
-console.log(myLibrary)
+// }
+
+// submitBtn.addEventListener("click", addBookToLibrary);
