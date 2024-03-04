@@ -6,19 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library App</title>
     <script src="./script.js" defer></script>
+    <script> 
+    window.onload = function () {
+        myLibrary.forEach(createBookCards)
+        };
+    </script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+    <header class="mheader">
+        <h1 class="main-title">My sick library app</h1>
+    </header>
     <div class="main-container">
-        <header>
-            <h1 class="main-title">My sick library app</h1>
-        </header>
-        <input type="text" name="book-name" id="bookTitle">
-        <button type="button" id="oneBtn"></button>
-        <div class="main-content-container">
-            <div class="book-card">
 
-            </div>
+        <div class="lside-bar">
+            <!-- "bif" = Book Input Form -->
+            <form action="TBD problematic" class="bif">
+
+
+                <!-- "bif-if" = Book Input Form - Input Field -->
+                <fieldset>
+                    <label for="btitle">Book Title: </label><br>
+                    <input type="text" name="book-title" class="bif-if" id="bookTitle">
+                </fieldset>
+
+                <fieldset>
+                    <label for="bauthor">Book Author: </label><br>
+                    <input type="text" name="book-author" class="bif-if" id="bookAuthor">
+                </fieldset>
+
+                <fieldset>
+                    <label for="bgenre">Book Genre: </label><br>
+                    <input type="text" name="book-genre" class="bif-if" id="bookGenre">
+                </fieldset>
+
+                <fieldset>
+                    <label for="blength">Book length (no. of pages): </label><br>
+                    <input type="text" name="book-length" id="bookLength" class="bif-if">
+                </fieldset>
+
+                <fieldset>
+                    <label for="breadstatus">Read Status: </label><br>
+                    <input type="text" name="book-read-status" id="bookReadStatus" class="bif-if">
+                </fieldset>
+
+                <div class="submit-btn-container">
+                    <button id="oneBtn" type="button">Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="main-content" id="main-content">
+                <!-- "BC" = Book Card -->
+            
+
         </div>
     </div>
 </body>
