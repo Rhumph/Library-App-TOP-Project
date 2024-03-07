@@ -1,10 +1,3 @@
-// const myLibrary = [
-//     ["Chaos", "Tom O'Neill", "Investigative Journalism", "528", "Have Read"],
-//     ["Breath", "James Nestor", "Health/Investigative", "304", "Have Read"],
-//     ["The Gulag archipelago", "Aleksandr Solzhenitsyn", "History/Politics", "1948", "Currently Reading"],
-//     ["1984", "George Orwell", "Dystopian Fiction", "328", "Have Read"]
-// ];
-
 const myLibrary = [
     {
         title: "Chaos",
@@ -45,6 +38,9 @@ const newBookLength = document.getElementById("bookLength");
 const newBookReadStatus = document.getElementById("bookReadStatus");
 const submitBtn = document.getElementById("oneBtn");
 
+// Event Listeners
+submitBtn.addEventListener("click", addBookToLibrary);
+
 // Book Constructor
 function book(bookTitle, bookAuthor, bookGenre, bookLength, bookReadStatus) {
 
@@ -56,34 +52,30 @@ function book(bookTitle, bookAuthor, bookGenre, bookLength, bookReadStatus) {
 
 }
 
-book.prototype.bookInfoArray = function () {
-    return [this.bookTitle, this.bookAuthor, this.bookGenre, this.bookLength, this.bookReadStatus];
-}
-
 // Function that builds a card for each book
-function createBookCards(title, author, genre, length, readstatus) {
+function createBookCards(book) {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
 
     const bTitle = document.createElement("h3");
     bTitle.classList.add("BCtitle");
-    bTitle.textContent = title;
+    bTitle.textContent = book.title;
 
     const bAuthor = document.createElement("p");
     bAuthor.classList.add("BCauthor");
-    bAuthor.textContent = book.bookAuthor;
+    bAuthor.textContent = book.author;
 
     const bGenre = document.createElement("p");
     bGenre.classList.add("BCgenre");
-    bGenre.textContent = book.bookGenre;
+    bGenre.textContent = book.genre;
 
     const bLength = document.createElement("p");
     bLength.classList.add("BCLength");
-    bLength.textContent = book.bookLength;
+    bLength.textContent = book.length;
 
     const bReadStatus = document.createElement("p");
     bReadStatus.classList.add("BCreadstatus");
-    bReadStatus.textContent = book.bookReadStatus;
+    bReadStatus.textContent = book.readStatus;
 
     bookCard.appendChild(bTitle);
     bookCard.appendChild(bAuthor);
@@ -96,23 +88,27 @@ function createBookCards(title, author, genre, length, readstatus) {
 
 }
 
-// LOOK HERE WHEN YOUR RETURN - You're having dramas parsing the books into the create cards function.
-
+// Function that creates a book object from form inputs
 function addBookToLibrary() {
 
-    const bookName = newBookTitle.value;
-    const bookAuthor = newBookAuthor.value;
-    const bookGenre = newBookGenre.value;
-    const bookLength = newBookLength.value;
-    const bookReadStatus = newBookReadStatus.value;
+    const title = newBookTitle.value;
+    const author = newBookAuthor.value;
+    const genre = newBookGenre.value;
+    const length = newBookLength.value;
+    const readStatus = newBookReadStatus.value;
 
-
-    // [bookName, bookAuthor, bookGenre, bookLength, bookReadStatus];
-    const bookToAdd = new book(bookName, bookAuthor, bookGenre, bookLength, bookReadStatus);
+    const bookToAdd = {title, author, genre, length, readStatus};
     myLibrary.push(bookToAdd);
-    bookToAdd.bookInfoArray()
-    createBookCards(myLibrary[myLibrary.length - 1]);
+    console.log(myLibrary[myLibrary.length - 1])
+    console.log(myLibrary)
+    createBookCards(myLibrary[myLibrary.length - 1])
+
+    newBookTitle.value = '';
+    newBookAuthor.value = '';
+    newBookGenre.value = '';
+    newBookLength.value = '';
+    newBookReadStatus.value = '';
 
 }
 
-submitBtn.addEventListener("click", addBookToLibrary, console.log(myLibrary));
+// Next objective is to create a delete function that will be in each card
