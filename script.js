@@ -44,6 +44,11 @@ const submitBtn = document.getElementById("oneBtn");
 
 // Event Listeners
 submitBtn.addEventListener("click", addBookToLibrary);
+deleteButton.addEventListener("click", deleteCard());
+
+function deleteCard(value){ 
+    const deleteIndex = document.
+}
 
 // Book Constructor
 function book(bookTitle, bookAuthor, bookGenre, bookLength, bookReadStatus, libIndex) {
@@ -82,11 +87,21 @@ function createBookCards(book) {
     bReadStatus.classList.add("BCreadstatus");
     bReadStatus.textContent = book.readStatus;
 
+    const deleteButton = document.createElement("button")
+    deleteButton.value = book.libIndex;
+    deleteButton.classList.add("Bdeletebtn")
+
+    const hiddenIndex = document.createElement("div")
+    hiddenIndex.classList.add("hiddenElement")
+    hiddenIndex.textContent = book.libIndex;
+ 
     bookCard.appendChild(bTitle);
     bookCard.appendChild(bAuthor);
     bookCard.appendChild(bGenre);
     bookCard.appendChild(bLength);
     bookCard.appendChild(bReadStatus);
+    bookCard.appendChild(deleteButton);
+    bookCard.appendChild(hiddenIndex);
 
     const bookCards = document.getElementById("main-content");
     bookCards.appendChild(bookCard);
@@ -117,4 +132,4 @@ function addBookToLibrary() {
 
 }
 
-// Next objective is to create a delete function that will be in each card
+// You have given each card an index to be found and deleted, you just need to add a delete button and function to each card that will delete the corresponding book in the library when pressed
