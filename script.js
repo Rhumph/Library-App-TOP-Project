@@ -4,28 +4,32 @@ const myLibrary = [
         author: "Tom O'Neill",
         genre: "Investigative Journalism",
         length: "528",
-        readStatus: "Have Read"
+        readStatus: "Have Read",
+        libIndex: 0
     },
     {
         title: "Breath",
         author: "James Nestor",
         genre: "Health/Investigative",
         length: "304",
-        readStatus: "Have Read"
+        readStatus: "Have Read",
+        libIndex: 1
     },
     {
         title: "The Gulag archipelago",
         author: "Aleksandr Solzhenitsyn",
         genre: "History/Politics",
         length: "1948",
-        readStatus: "Currently Reading"
+        readStatus: "Currently Reading",
+        libIndex: 2
     },
     {
         title: "1984",
         author: "George Orwell",
         genre: "Dystopian Fiction",
         length: "328",
-        readStatus: "Have Read"
+        readStatus: "Have Read",
+        libIndex: 3
     }
 ];
 
@@ -42,13 +46,14 @@ const submitBtn = document.getElementById("oneBtn");
 submitBtn.addEventListener("click", addBookToLibrary);
 
 // Book Constructor
-function book(bookTitle, bookAuthor, bookGenre, bookLength, bookReadStatus) {
+function book(bookTitle, bookAuthor, bookGenre, bookLength, bookReadStatus, libIndex) {
 
     this.bookTitle = bookTitle;
     this.bookAuthor = bookAuthor;
     this.bookGenre = bookGenre;
     this.bookLength = bookLength + " Pages";
     this.bookReadStatus = bookReadStatus;
+    this.libIndex = libIndex;
 
 }
 
@@ -96,8 +101,9 @@ function addBookToLibrary() {
     const genre = newBookGenre.value;
     const length = newBookLength.value;
     const readStatus = newBookReadStatus.value;
+    const libIndex = myLibrary[myLibrary.length - 1].libIndex + 1;
 
-    const bookToAdd = {title, author, genre, length, readStatus};
+    const bookToAdd = {title, author, genre, length, readStatus, libIndex};
     myLibrary.push(bookToAdd);
     console.log(myLibrary[myLibrary.length - 1])
     console.log(myLibrary)
