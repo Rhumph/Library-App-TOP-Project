@@ -42,12 +42,24 @@ const newBookLength = document.getElementById("bookLength");
 const newBookReadStatus = document.getElementById("bookReadStatus");
 const submitBtn = document.getElementById("oneBtn");
 
+
 // Event Listeners
 submitBtn.addEventListener("click", addBookToLibrary);
-deleteButton.addEventListener("click", deleteCard());
+// const deleteButtons = document.querySelectorAll(".Bdeletebtn");
+// deleteButtons.forEach((button) => {
+//     button.addEventListener("click", deleteCard(), console.log("pressed"));
+// });
 
-function deleteCard(value){ 
-    const deleteIndex = document.
+
+function deleteCard(event) {
+    const card = event.target.closest(".book-card");
+    const hiddenIndex = card.querySelector(".hiddenElement").textContent;
+
+    // Remove from myLibrary array 
+    myLibrary = myLibrary.filter((book) => book.libIndex !== hiddenIndex);
+
+    // Remove the card from the DOM
+    card.remove();
 }
 
 // Book Constructor
@@ -88,13 +100,18 @@ function createBookCards(book) {
     bReadStatus.textContent = book.readStatus;
 
     const deleteButton = document.createElement("button")
-    deleteButton.value = book.libIndex;
+    const deleteCardIndex = deleteButton.value = book.libIndex;
     deleteButton.classList.add("Bdeletebtn")
 
     const hiddenIndex = document.createElement("div")
     hiddenIndex.classList.add("hiddenElement")
     hiddenIndex.textContent = book.libIndex;
- 
+
+    const deleteButtons = document.querySelectorAll("Bdeletebtn");
+    deleteButtons.forEach((button) => {
+        button.addEventListener("click", deleteCard);
+    });
+
     bookCard.appendChild(bTitle);
     bookCard.appendChild(bAuthor);
     bookCard.appendChild(bGenre);
@@ -118,7 +135,7 @@ function addBookToLibrary() {
     const readStatus = newBookReadStatus.value;
     const libIndex = myLibrary[myLibrary.length - 1].libIndex + 1;
 
-    const bookToAdd = {title, author, genre, length, readStatus, libIndex};
+    const bookToAdd = { title, author, genre, length, readStatus, libIndex };
     myLibrary.push(bookToAdd);
     console.log(myLibrary[myLibrary.length - 1])
     console.log(myLibrary)
