@@ -1,4 +1,4 @@
-const myLibrary = [
+let myLibrary = [
     {
         title: "Chaos",
         author: "Tom O'Neill",
@@ -33,7 +33,6 @@ const myLibrary = [
     }
 ];
 
-
 // bif elements
 const newBookTitle = document.getElementById("bookTitle");
 const newBookAuthor = document.getElementById("bookAuthor");
@@ -42,24 +41,22 @@ const newBookLength = document.getElementById("bookLength");
 const newBookReadStatus = document.getElementById("bookReadStatus");
 const submitBtn = document.getElementById("oneBtn");
 
-
 // Event Listeners
 submitBtn.addEventListener("click", addBookToLibrary);
-// const deleteButtons = document.querySelectorAll(".Bdeletebtn");
-// deleteButtons.forEach((button) => {
-//     button.addEventListener("click", deleteCard(), console.log("pressed"));
-// });
-
 
 function deleteCard(event) {
     const card = event.target.closest(".book-card");
     const hiddenIndex = card.querySelector(".hiddenElement").textContent;
 
+    console.log(hiddenIndex);
+
     // Remove from myLibrary array 
-    myLibrary = myLibrary.filter((book) => book.libIndex !== hiddenIndex);
+    myLibrary = myLibrary.filter((book) => book.libIndex !== parseInt(hiddenIndex));
+    
 
     // Remove the card from the DOM
     card.remove();
+    console.log(myLibrary);
 }
 
 // Book Constructor
@@ -107,7 +104,7 @@ function createBookCards(book) {
     hiddenIndex.classList.add("hiddenElement")
     hiddenIndex.textContent = book.libIndex;
 
-    const deleteButtons = document.querySelectorAll("Bdeletebtn");
+    const deleteButtons = document.querySelectorAll(".Bdeletebtn");
     deleteButtons.forEach((button) => {
         button.addEventListener("click", deleteCard);
     });
@@ -148,5 +145,3 @@ function addBookToLibrary() {
     newBookReadStatus.value = '';
 
 }
-
-// You have given each card an index to be found and deleted, you just need to add a delete button and function to each card that will delete the corresponding book in the library when pressed
