@@ -52,7 +52,6 @@ function deleteCard(event) {
 
     // Remove from myLibrary array 
     myLibrary = myLibrary.filter((book) => book.libIndex !== parseInt(hiddenIndex));
-    
 
     // Remove the card from the DOM
     card.remove();
@@ -97,8 +96,12 @@ function createBookCards(book) {
     bReadStatus.textContent = book.readStatus;
 
     const deleteButton = document.createElement("button")
-    const deleteCardIndex = deleteButton.value = book.libIndex;
     deleteButton.classList.add("Bdeletebtn")
+    deleteButton.textContent = "Delete"
+
+    const readButton = document.createElement("button")
+    readButton.classList.add("Breadbtn")
+    readButton.textContent = "Read";
 
     const hiddenIndex = document.createElement("div")
     hiddenIndex.classList.add("hiddenElement")
@@ -109,17 +112,43 @@ function createBookCards(book) {
         button.addEventListener("click", deleteCard);
     });
 
+    const readButtons = document.querySelectorAll(".Breadbtn");
+    readButtons.forEach((button) => {
+        button.addEventListener("click", );
+    });
+
     bookCard.appendChild(bTitle);
     bookCard.appendChild(bAuthor);
     bookCard.appendChild(bGenre);
     bookCard.appendChild(bLength);
     bookCard.appendChild(bReadStatus);
     bookCard.appendChild(deleteButton);
+    bookCard.appendChild(readButton);
     bookCard.appendChild(hiddenIndex);
 
     const bookCards = document.getElementById("main-content");
     bookCards.appendChild(bookCard);
 
+}
+
+book.prototype.toggleRead = function () { 
+    // This will toggle the read status between Read List, Reading, and Have Read
+    switch (this.bookReadStatus) {
+        case "Read List":
+            this.bookReadStatus = "Reading";
+            break;
+        case "Reading":
+            this.bookReadStatus = "Have Read";
+            break;
+        case "Have Read":
+            this.bookReadStatus = "Read List";
+            break;
+        default:
+            // Handle unexpected cases
+            break;
+    }
+
+    console.log(myLibrary)
 }
 
 // Function that creates a book object from form inputs
