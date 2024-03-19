@@ -43,6 +43,15 @@ const submitBtn = document.getElementById("oneBtn");
 
 // Event Listeners
 submitBtn.addEventListener("click", addBookToLibrary);
+// Add a single listener to a static parent element
+document.getElementById("main-content").addEventListener("click", (event) => {
+    if (event.target.classList.contains("Bdeletebtn")) {
+      deleteCard(event);
+    } else if (event.target.classList.contains("Breadbtn")) {
+      toggleRead(event);
+    }
+  });
+  
 
 function deleteCard(event) {
     const card = event.target.closest(".book-card");
@@ -108,14 +117,8 @@ function createBookCards(book) {
     hiddenIndex.textContent = book.libIndex;
 
     const deleteButtons = document.querySelectorAll(".Bdeletebtn");
-    deleteButtons.forEach((button) => {
-        button.addEventListener("click", deleteCard);
-    });
 
     const readButtons = document.querySelectorAll(".Breadbtn");
-    readButtons.forEach((button) => {
-        button.addEventListener("click", );
-    });
 
     bookCard.appendChild(bTitle);
     bookCard.appendChild(bAuthor);
@@ -131,20 +134,42 @@ function createBookCards(book) {
 
 }
 
-book.prototype.toggleRead = function () { 
-    // This will toggle the read status between Read List, Reading, and Have Read
-    switch (this.bookReadStatus) {
+ function toggleRead (event) { 
+    // This will toggle the read status between Read List, Reading, and Have Read.
+
+    console.log("toggleRead function reached")
+
+    
+    const card = event.target.parentNode.querySelector(".BCreadstatus");
+    const cardIndex = event.target.parentNode.querySelector(".hiddenElement").textContent;
+
+    switch (card.textContent) {
+
         case "Read List":
-            this.bookReadStatus = "Reading";
+            console.log("RL")
+            card.textContent = "Reading";
+            console.log(cardIndex);
+            myLibrary[parseInt(cardIndex)].readStatus = "Reading";
             break;
+
         case "Reading":
-            this.bookReadStatus = "Have Read";
+            console.log("R")
+            card.textContent = "Have Read";
+            console.log(cardIndex);
+            myLibrary[parseInt(cardIndex)].readStatus = "Have Read";
             break;
+
         case "Have Read":
-            this.bookReadStatus = "Read List";
+            console.log("HR")
+            card.textContent = "Read List";
+            console.log(cardIndex);
+            myLibrary[parseInt(cardIndex)].readStatus = "Read List";
             break;
+
         default:
             // Handle unexpected cases
+
+            console.log("default reached")
             break;
     }
 
