@@ -175,8 +175,13 @@ class LibraryBook {
 }
 
 // Event Listeners
-submitBtn.addEventListener("click", LibraryBook.addBookToLibrary);
-// Add a single listener to a static parent element
+submitBtn.addEventListener("click", () => {
+    if (newBookTitle.value && newBookAuthor.value && newBookGenre.value && newBookLength.value && newBookReadStatus.value) {
+        LibraryBook.addBookToLibrary();
+    } else {
+        alert("Please fill in all fields.");
+    }
+});
 document.getElementById("main-content").addEventListener("click", (event) => {
     if (event.target.classList.contains("Bdeletebtn")) {
         LibraryBook.deleteCard(event);
